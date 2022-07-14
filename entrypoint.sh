@@ -128,6 +128,7 @@ if _git_changed; then
       git push origin ${INPUT_PUSH_OPTIONS:-}
     fi
     echo "Changes pushed successfully."
+    echo ::set-output name=file_changed::true
   fi
 else
   # case when --check is used so there will never have something to commit but there are unpretty files
@@ -139,4 +140,5 @@ else
   fi
   echo "No unpretty files!"
   echo "Nothing to commit. Exiting."
+  echo ::set-output name=file_changed::false
 fi
